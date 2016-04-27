@@ -1,4 +1,4 @@
-SOURCES = $(wildcard *.cpp) $(wildcard level/*.cpp) $(wildcard generator/*.cpp) $(wildcard tema/*.cpp)
+SOURCES = $(wildcard *.cpp) $(wildcard level/*.cpp) $(wildcard generator/*.cpp) $(wildcard generator/hnus/*.cpp) $(wildcard tema/*.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
 DEPS = $(SOURCES:%.cpp=%.d)
 TARGET = level_gen

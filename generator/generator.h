@@ -17,4 +17,6 @@ void gen_zlejsky(Sektor *s);
 
 void gen_ryby(Tilemap *tm);
 
+void gen_obdelniky(Sektor *s);
+
 #endif //GENERATOR_H

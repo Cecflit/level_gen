@@ -41,11 +41,13 @@ Sektor::Sektor(Level *l, std::string jmeno_) :
   frgrd->z_pos = 100;
 
   vymysli_osvetleni(this);
-  if (level->tema.vyskopis == TemaLevelu::Tpodzemi) {
+/*  if (level->tema.vyskopis == TemaLevelu::Tpodzemi) {
     gen_jeskyne1(this);
   } else {
     gen_lesni_podlaha(this);
-  }
+  }*/
+  gen_obdelniky(this);
+
   gen_start(this, 0, 0);
   gen_cil(this, level->sirka-25, 1);
   gen_ulozovaky(this);

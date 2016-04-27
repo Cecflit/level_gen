@@ -16,6 +16,8 @@
 #include "strop.h"
 #include "zlej.h"
 
+#include "hnus/obdelniky.h"
+
 #include "../level/level.h"
 #include "../level/sektor.h"
 #include "../level/tilemap.h"
@@ -96,4 +98,17 @@ void gen_zlejsky(Sektor *s) {
 void gen_ryby(Tilemap *tm) {
   Rybator r(tm);
   r.nasekej_ryby();
+}
+
+void gen_obdelniky(Sektor *s) {
+  SadaDlazdic sd = spravna_sada(s);
+  Obdelniky o(s->intact2, sd.konvexni[7]);
+/*  o.hustota = 3;
+  o.zakladni_y = s->intact2->vyska - 10;
+  o.odchylka_y = 7;
+  o.zakladni_sirka = 2;
+  o.odchylka_sirky = 9;
+  o.zakladni_vyska = 2;
+  o.odchylka_vysky = 4;*/
+  o.generuj();
 }

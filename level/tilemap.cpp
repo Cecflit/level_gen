@@ -131,6 +131,18 @@ void Tilemap::obdelnik(BLOK blok, int x1, int x2, int y1, int y2) {
   if (y1 < 0) {
     y1 = 0;
   }
+  if (x2 < 0) {
+    x2 = 0;
+  }
+  if (y2 < 0) {
+    y2 = 0;
+  }
+  if (x1 >= sirka) {
+    x1 = sirka - 1;
+  }
+  if (y1 >= vyska) {
+    y1 = vyska - 1;
+  }
   if (x2 >= sirka) {
     x2 = sirka - 1;
   }
