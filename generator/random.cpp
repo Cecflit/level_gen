@@ -19,6 +19,7 @@ double nahodne_d(double max) {
 }
 
 int exp_rand(int xp) {
+  if (xp == 0) return 0;
   int p = 0;
   while (nahodne(xp) > 1) {
     p++;
@@ -27,6 +28,7 @@ int exp_rand(int xp) {
 }
 
 int exp_rand(int xp, int max) {
+  if (xp == 0) return 0;
   int p = 0;
   while (nahodne(xp) > 1 && p < max) {
     p++;
@@ -47,6 +49,7 @@ int signed_xp_rand(int xp, int max) {
 }
 
 int nahodne_vyber(const double *pole, int pocet) {
+  if (!pole) return 0;
   double soucet = 0;
   for (int i = pocet - 1; i >= 0; i--) {
     soucet += pole[i];

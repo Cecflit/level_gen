@@ -27,6 +27,7 @@
 
 SadaDlazdic spravna_sada(Sektor *s) {
   switch (s->level->tema.biom) {
+    default:
     case TemaLevelu::Tledovec:
     case TemaLevelu::Tkrystaly:
       return PoleDlazdic::led;
@@ -40,6 +41,7 @@ SadaDlazdic spravna_sada(Sektor *s) {
 
 const double* spravni_zlejsci(Sektor *s) {
   switch (s->level->tema.biom) {
+    default:
     case TemaLevelu::Tledovec:
     case TemaLevelu::Tkrystaly:
       return ledovi_zlejsci;
@@ -103,12 +105,14 @@ void gen_ryby(Tilemap *tm) {
 void gen_obdelniky(Sektor *s) {
   SadaDlazdic sd = spravna_sada(s);
   Obdelniky o(s->intact2, sd.konvexni[7]);
-/*  o.hustota = 3;
-  o.zakladni_y = s->intact2->vyska - 10;
-  o.odchylka_y = 7;
-  o.zakladni_sirka = 2;
-  o.odchylka_sirky = 9;
-  o.zakladni_vyska = 2;
-  o.odchylka_vysky = 4;*/
+  o.generuj();
+}
+
+void gen_prkna(Tilemap *tm) {
+  Obdelniky o(tm, 28);
+  o.zakladni_vyska = 0;
+  o.odchylka_vysky = 0;
+  o.zakladni_y = tm->vyska - 20;
+  o.hustota /= 50;
   o.generuj();
 }
