@@ -21,8 +21,24 @@ void Rybator::nasekej_ryby() {
     x = nahodne(w);
     y = nahodne(h);
     if (nahodne(10)) {
-      if (tm->bloky[x][y] == 11) {
-        tm->bloky[x][y] = 19;
+      switch (tm->bloky[x][y]) {
+        default:
+          break;
+        case 11:
+          tm->bloky[x][y] = 19;
+          break;
+        case 305:
+          tm->bloky[x][y] = 312;
+          break;
+        case 1009:
+          tm->bloky[x][y] = 1010;
+          break;
+        case 1869:
+          tm->bloky[x][y] = 1870;
+          break;
+        case 1432:
+          tm->bloky[x][y] = 1433;
+          break;
       }
     } else {
       if (x == w-1 || y == h-1) {

@@ -24,7 +24,7 @@ Obdelniky::Obdelniky(Tilemap* tm_, BLOK vypln_) :
 }
 
 int Obdelniky::vymysli_pocet() {
-  return tm->sirka * odchylka_y * hustota / odchylka_sirky;
+  return tm->sirka * odchylka_y * hustota / (odchylka_sirky + 1);
 }
 
 void Obdelniky::generuj() {

@@ -46,7 +46,7 @@ Sektor::Sektor(Level *l, std::string jmeno_) :
   } else {
     gen_lesni_podlaha(this);
   }*/
-  gen_obdelniky(this);
+  gen_teren(this);
   gen_prkna(intact2);
 
   gen_start(this, 0, 0);

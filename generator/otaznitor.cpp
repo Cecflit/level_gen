@@ -23,13 +23,7 @@ Otaznitor::Otaznitor(Sektor *s):
 }
 
 int Otaznitor::vymysli_pocet() {
-  int pocet;
-  if (nas_sektor->level->tema.hrani == TemaLevelu::T1D && nas_sektor->tema != TemaSektoru::Thrad) {
-    pocet = w / 10;
-  } else {
-    pocet = (w / 10) * (h / 20);
-  }
-  return pocet;
+  return (w / 10) * (h / 40);
 }
 
 bool Otaznitor::uprav_pozici_p1(int x, int &y) {
@@ -188,30 +182,40 @@ void Otaznitor::rada_otazniku(int x, int y) {
 
   bool bedny = nahodne(2);
   bool mam_bednu = nahodne(2);
+  bool je_prkno = nahodne(2);
 
   while (zkontroluj_pozici(x,y) && nahodne(5)) {
-    if (mam_bednu) {
-      if (nahodne(3) > 1) {
-        if (nas_sektor->level->tema.biom == TemaLevelu::Tledovec) {
-          nas_sektor->intact2->poloz_blok(78, x, y);
-        } else if (nas_sektor->level->tema.biom == TemaLevelu::Tducholes) {
-          nas_sektor->intact2->poloz_blok(3159, x, y);
+    if (je_prkno) {
+      if (mam_bednu) {
+        nas_sektor->intact2->poloz_blok(28, x, y);
+      } else {
+        nas_sektor->intact2->poloz_blok(48, x, y);
+      }
+      x++;
+    } else {
+      if (mam_bednu) {
+        if (nahodne(3) > 1) {
+          if (nas_sektor->level->tema.biom == TemaLevelu::Tledovec) {
+            nas_sektor->intact2->poloz_blok(78, x, y);
+          } else if (nas_sektor->level->tema.biom == TemaLevelu::Tducholes) {
+            nas_sektor->intact2->poloz_blok(3159, x, y);
+          } else {
+            nas_sektor->intact2->poloz_blok(77, x, y);
+          }
         } else {
           nas_sektor->intact2->poloz_blok(77, x, y);
         }
       } else {
-        nas_sektor->intact2->poloz_blok(77, x, y);
+        BLOK ot = nahodne_vyber(o_sance, 7);
+        if (ot == 5 && nas_sektor->level->tema.vyskopis == TemaLevelu::Tpodzemi) {
+          ot = 6;
+        }
+        nas_sektor->intact2->poloz_blok(otazniky[ot], x, y);
       }
-    } else {
-      BLOK ot = nahodne_vyber(o_sance, 7);
-      if (ot == 5 && nas_sektor->level->tema.vyskopis == TemaLevelu::Tpodzemi) {
-        ot = 6;
+      x++;
+      if (bedny) {
+        mam_bednu = !mam_bednu;
       }
-      nas_sektor->intact2->poloz_blok(otazniky[ot], x, y);
-    }
-    x++;
-    if (bedny) {
-      mam_bednu = !mam_bednu;
     }
   }
 }

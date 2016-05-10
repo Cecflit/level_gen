@@ -19,5 +19,6 @@ void gen_ryby(Tilemap *tm);
 
 void gen_obdelniky(Sektor *s);
 void gen_prkna(Tilemap *tm);
+void gen_teren(Sektor *s);
 
 #endif //GENERATOR_H

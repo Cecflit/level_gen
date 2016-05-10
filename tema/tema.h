@@ -9,7 +9,7 @@ namespace TemaLevelu {
     Tkrystaly,
     Tdzungle,
     Tducholes
-  }; //6 celkem
+  }; //5 celkem
 
   enum Vyskopis{
     Trovina,

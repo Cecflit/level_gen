@@ -100,13 +100,7 @@ bool Zlej::uprav_horni_pozici(int x, int &y) {
 }
 
 int Zlej::vymysli_pocet() {
-  int pocet;
-  if (nas_sektor->level->tema.hrani == TemaLevelu::T1D && nas_sektor->tema != TemaSektoru::Thrad) {
-    pocet = nas_sektor->intact->sirka / 10;
-  } else {
-    pocet = (nas_sektor->intact->sirka / 10) * (nas_sektor->intact->vyska / 20);
-  }
-  return pocet;
+  return (nas_sektor->intact->sirka / 10) * (nas_sektor->intact->vyska / 20);
 }
 
 void Zlej::nasekej_zlejsky() {

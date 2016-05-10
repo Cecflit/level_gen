@@ -38,8 +38,8 @@ namespace TemaLevelu {
     4, //pahorkatina
     6, //vrchovina
     8, //hory
-    3, //podzemí
-    3  //nebe
+    6, //podzemí
+    6  //nebe
   };
 }
 

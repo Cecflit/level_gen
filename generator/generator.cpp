@@ -116,3 +116,66 @@ void gen_prkna(Tilemap *tm) {
   o.hustota /= 50;
   o.generuj();
 }
+
+void gen_teren(Sektor *s) {
+  SadaDlazdic sd = spravna_sada(s);
+  Obdelniky o(s->intact2, sd.konvexni[7]);
+  {
+    Obdelniky ob(s->intact2, sd.konvexni[7]);
+    ob.hustota /= 10;
+    float z_x = ob.zakladni_sirka;
+    float z_y = ob.zakladni_vyska;
+    float z_r = ob.hustota;
+    if (s->level->tema.vyskopis == TemaLevelu::Tnebe ||
+        s->level->tema.vyskopis == TemaLevelu::Tpodzemi) {
+      for ( int i = s->intact2->vyska/20; i > 0; i--) {
+        ob.zakladni_y = i*20;
+        ob.odchylka_sirky = int(z_x / s->intact2->vyska * 20 * i);
+        ob.odchylka_vysky = int(z_y / s->intact2->vyska * 20 * i);
+        ob.hustota = z_r / s->intact2->vyska * 20 * i;
+        ob.generuj();
+      }
+    } else {
+      for ( int i = s->intact2->vyska/40; i > 0; i--) {
+        ob.zakladni_y = i*40;
+        ob.odchylka_sirky = int(z_x / s->intact2->vyska * 20 * i);
+        ob.odchylka_vysky = int(z_y / s->intact2->vyska * 20 * i);
+        ob.hustota = z_r / s->intact2->vyska * 20 * i;
+        ob.generuj();
+      }
+    }
+  }
+  if (s->level->tema.vyskopis != TemaLevelu::Tnebe) {
+    o.generuj();
+  } else {
+    return;
+  }
+  if (s->level->tema.vyskopis == TemaLevelu::Tpodzemi) {
+    for ( int i = s->intact2->vyska/50; i >= 0; i--) {
+      o.zakladni_y = i*50;
+      o.generuj();
+    }
+    return;
+  }
+  switch (s->level->tema.biom) {
+    default:
+    case TemaLevelu::Tledovec:
+    case TemaLevelu::Tkrystaly:
+    case TemaLevelu::Tles:
+      break;
+    case TemaLevelu::Tdzungle:
+      o.vypln = 305;
+      o.zakladni_y = 0;
+      o.generuj();
+
+      o.hustota /= 3;
+      o.odchylka_vysky = 3;
+      o.zakladni_vyska = 3;
+      for ( int i = s->intact2->vyska/20; i; i--) {
+        o.zakladni_y = i*20;
+        o.generuj();
+      }
+    case TemaLevelu::Tducholes:
+      break;
+  }
+}
