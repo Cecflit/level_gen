@@ -137,7 +137,7 @@ void gen_teren(Sektor *s) {
       }
     } else {
       for ( int i = s->intact2->vyska/40; i > 0; i--) {
-        ob.zakladni_y = i*40;
+        ob.zakladni_y = i*40 + 10;
         ob.odchylka_sirky = int(z_x / s->intact2->vyska * 20 * i);
         ob.odchylka_vysky = int(z_y / s->intact2->vyska * 20 * i);
         ob.hustota = z_r / s->intact2->vyska * 20 * i;
